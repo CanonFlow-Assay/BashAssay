@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "platform": "linux-x86_64",
+  "python": "3.12",
+  "qualifiedTools": {
+    "bash": "5.2.21",
+    "shellcheck": "0.11.0"
+  },
+  "assets": [
+    {
+      "command": "shellcheck",
+      "version": "0.11.0",
+      "url": "https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz",
+      "archive": "shellcheck-v0.11.0.linux.x86_64.tar.xz",
+      "sha256": "8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198",
+      "size": 2559196,
+      "binary": "shellcheck-v0.11.0/shellcheck",
+      "githubAssetId": 279056942
+    }
+  ]
+}

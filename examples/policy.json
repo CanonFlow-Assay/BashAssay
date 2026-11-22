@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "profile": "bash-automation",
+  "sources": [
+    "arguments.sh"
+  ],
+  "testInputs": [
+    "test_sample.py"
+  ],
+  "requiredCommands": [
+    [
+      "python3",
+      "test_sample.py"
+    ]
+  ]
+}

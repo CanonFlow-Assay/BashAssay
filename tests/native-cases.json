@@ -1,0 +1,67 @@
+[
+  {
+    "name": "clean argument vector",
+    "source": "printf \"%s\\n\" \"$@\"\n",
+    "exit": 2
+  },
+  {
+    "name": "Bash syntax error",
+    "source": "if true; then\n    printf \"%s\\n\" hello\n",
+    "exit": 1,
+    "rule": "BA001"
+  },
+  {
+    "name": "inline policy excluded",
+    "source": "# shellcheck disable=SC2086\nprintf \"%s\\n\" $1\n",
+    "exit": 1,
+    "rule": "BA002"
+  },
+  {
+    "name": "analyzer error for decimal integer comparison",
+    "source": "[[ 1.5 -lt 2.5 ]]\n",
+    "exit": 1,
+    "rule": "BA003"
+  },
+  {
+    "name": "option-shaped glob results",
+    "source": "ls *.txt\n",
+    "exit": 1,
+    "rule": "BA004"
+  },
+  {
+    "name": "word splitting on command substitution",
+    "source": "printf \"%s\\n\" $(printf \"a b\")\n",
+    "exit": 1,
+    "rule": "BA005"
+  },
+  {
+    "name": "quoted argument vector required",
+    "source": "printf \"%s\\n\" $@\n",
+    "exit": 1,
+    "rule": "BA006"
+  },
+  {
+    "name": "unquoted scalar expansion",
+    "source": "printf \"%s\\n\" $1\n",
+    "exit": 1,
+    "rule": "BA007"
+  },
+  {
+    "name": "masked assignment status",
+    "source": "value() {\n    local label=$(printf \"a\")\n    printf \"%s\\n\" \"$label\"\n}\nvalue\n",
+    "exit": 1,
+    "rule": "BA008"
+  },
+  {
+    "name": "unchecked directory change",
+    "source": "cd -- \"$1\"\npwd\n",
+    "exit": 1,
+    "rule": "BA009"
+  },
+  {
+    "name": "indirect source remains a gap",
+    "source": "source \"$1\"\n",
+    "exit": 2,
+    "requiredGap": "SC1090"
+  }
+]

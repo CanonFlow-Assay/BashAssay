@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "assay": "BashAssay",
+  "product": "bash",
+  "profile": "bash-automation",
+  "sourceExtensions": [
+    ".bash",
+    ".sh",
+    ""
+  ],
+  "nativeFiles": [],
+  "tools": [
+    {
+      "name": "bash",
+      "version": "5.2.21",
+      "versionArgs": [
+        "--version"
+      ],
+      "versionPattern": "^GNU bash, version ([0-9.]+)\\("
+    },
+    {
+      "name": "shellcheck",
+      "version": "0.11.0",
+      "versionArgs": [
+        "--version"
+      ],
+      "versionPattern": "(?m)^version: ([0-9.]+)$"
+    }
+  ],
+  "rules": [
+    {
+      "id": "BA001",
+      "severity": "blocking",
+      "title": "Bash reported a syntax error.",
+      "predicate": "bash --noprofile --norc -n exits 2.",
+      "source": "https://www.gnu.org/software/bash/manual/bash.html"
+    },
+    {
+      "id": "BA002",
+      "severity": "blocking",
+      "title": "The selected profile disallows inline ShellCheck directives.",
+      "predicate": "The source text contains a '#' followed by optional whitespace and the word shellcheck. Lint stops at this boundary.",
+      "source": "https://github.com/koalaman/shellcheck/blob/v0.11.0/shellcheck.1.md"
+    },
+    {
+      "id": "BA003",
+      "severity": "blocking",
+      "title": "ShellCheck reported an error-level diagnostic.",
+      "predicate": "A ShellCheck diagnostic has level error and has no more specific admitted mapping.",
+      "source": "https://github.com/koalaman/shellcheck/blob/v0.11.0/shellcheck.1.md"
+    },
+    {
+      "id": "BA004",
+      "severity": "blocking",
+      "title": "Protect glob results from option parsing.",
+      "predicate": "ShellCheck emitted SC2035.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2035"
+    },
+    {
+      "id": "BA005",
+      "severity": "blocking",
+      "title": "Quote this command substitution.",
+      "predicate": "ShellCheck emitted SC2046.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2046"
+    },
+    {
+      "id": "BA006",
+      "severity": "blocking",
+      "title": "Preserve argument or array element boundaries.",
+      "predicate": "ShellCheck emitted SC2068.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2068"
+    },
+    {
+      "id": "BA007",
+      "severity": "blocking",
+      "title": "Quote this expansion to preserve argument boundaries.",
+      "predicate": "ShellCheck emitted SC2086.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2086"
+    },
+    {
+      "id": "BA008",
+      "severity": "blocking",
+      "title": "Separate declaration from assignment when the command status matters.",
+      "predicate": "ShellCheck emitted SC2155.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2155"
+    },
+    {
+      "id": "BA009",
+      "severity": "blocking",
+      "title": "Handle failure to change directory explicitly.",
+      "predicate": "ShellCheck emitted SC2164.",
+      "source": "https://github.com/koalaman/shellcheck/wiki/SC2164"
+    }
+  ]
+}
